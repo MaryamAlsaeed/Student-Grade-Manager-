@@ -118,6 +118,50 @@
             Console.WriteLine($"Values: {string.Join(", ", phoneBook.Values)}");
         }
 
+        public static void UniqueEmails()
+        {
+            Space();
+            Console.WriteLine("UNIQUE EMAILS");
+            Console.WriteLine("-----------------");
+
+            HashSet<string> emails = new(StringComparer.OrdinalIgnoreCase);
+
+            string[] inputEmails =
+            {
+                "ahmed@test.com",
+                "AHMED@test.com",
+                "sara@test.com",
+                "Sara@Test.Com"
+            };
+         
+            foreach (string email in inputEmails)
+            {
+                bool added = emails.Add(email);   
+                Console.WriteLine($"Add {email}: {added}");
+            }
+
+            Console.WriteLine($"Unique emails: {string.Join(", ", emails)}");
+
+            var setA = new HashSet<int> { 1, 2, 3, 4, 5 };
+            var setB = new HashSet<int> { 4, 5, 6, 7, 8 };
+
+            var union = new HashSet<int>(setA);
+            union.UnionWith(setB);
+            Console.WriteLine($"Union: {string.Join(", ", union)}");
+
+            var intersection = new HashSet<int>(setA);
+            intersection.IntersectWith(setB);
+            Console.WriteLine($"Intersection: {string.Join(", ", intersection)}");
+
+            var except = new HashSet<int>(setA);
+            except.ExceptWith(setB);
+            Console.WriteLine($"Except: {string.Join(", ", except)}");
+
+            var small = new HashSet<int> { 1, 2 };
+            Console.WriteLine($"{{1,2}} is subset of A? {small.IsSubsetOf(setA)}");
+        }
+
+
         static void Main(string[] args)
         {
             StudentGradeManager();
@@ -125,6 +169,8 @@
             Leaderboard();
 
             PhoneBook();
+
+            UniqueEmails();
         }
     }
 }
