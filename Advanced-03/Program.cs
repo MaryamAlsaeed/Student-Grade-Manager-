@@ -2,6 +2,10 @@
 {
     internal class Program
     {
+        public static void Space()
+        {
+            Console.WriteLine();
+        }
         public static void StudentGradeManager()
         {
             #region Student grade manager
@@ -36,10 +40,50 @@
             #endregion
         }
 
+        public static void Leaderboard()
+        {
+            Space();
+            Console.WriteLine("LEADERBOARD");
+            Console.WriteLine("-----------------");
+            SortedDictionary<int, string> leaderboard = new();
+
+            leaderboard.Add(500, "Ahmed");
+            leaderboard.Add(200, "Sara");
+            leaderboard.Add(800, "Ali");
+            leaderboard.Add(350, "Mona");
+
+            foreach (var entry in leaderboard)
+            {
+                Console.WriteLine($"Score: {entry.Key}, Name: {entry.Value}");
+            }
+
+            int firstKey = leaderboard.Keys.First();
+            Console.WriteLine($"First key: {firstKey}");
+
+            string firstValue = leaderboard.Values.First();
+            Console.WriteLine($"First value: {firstValue}");
+
+            Console.WriteLine($"Is 500 exists? {leaderboard.ContainsKey(500)}");
+
+            if (leaderboard.TryGetValue(999, out string? name))
+            {
+                Console.WriteLine($"Name for score 999: {name}");
+            }
+
+            leaderboard.Remove(200);
+            Console.WriteLine("Leaderboard after removing score 200:");
+            foreach (var entry in leaderboard)
+            {
+                Console.WriteLine($"Score: {entry.Key}, Name: {entry.Value}");
+            }
+        }
+
 
         static void Main(string[] args)
         {
             StudentGradeManager();
+
+            Leaderboard();
         }
     }
 }
