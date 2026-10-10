@@ -194,6 +194,44 @@
             Console.WriteLine($"Next document to print: {nextDocument}, Success: {success}");
         }
 
+        public static void BrowserHistory()
+        {
+            Space();
+            Console.WriteLine("BROWSER HISTORY");
+            Console.WriteLine("-----------------");
+            Stack<string> browserHistory = new();
+            string[] history =
+            {
+                 "google.com",
+                "github.com",
+                "stackoverflow.com",
+                "youtube.com",
+                "claude.ai"
+            };
+            foreach(string url in history)
+            {
+                browserHistory.Push(url);
+            }
+            Console.WriteLine($"Current URL: {browserHistory.Peek()}");
+
+            for(int i = 0; i < 3; i++)
+            {
+                string url = browserHistory.Pop();
+                Console.WriteLine($"Last 3 urls: {url}");
+            }
+
+            Console.WriteLine($"Current URL: {browserHistory.Peek()}");
+
+            while (browserHistory.Count > 0)
+            {
+                string url = browserHistory.Pop();
+                Console.WriteLine($"Popped URL: {url}");
+            }
+
+            bool success = browserHistory.TryPop(out string? page);
+            Console.WriteLine($"TryPop succeeded? {success}, value: {(page ?? "null")}");
+        }
+
         static void Main(string[] args)
         {
             StudentGradeManager();
@@ -205,6 +243,8 @@
             UniqueEmails();
 
             PrintQueueSimulator();
+
+            BrowserHistory();
         }
     }
 }
