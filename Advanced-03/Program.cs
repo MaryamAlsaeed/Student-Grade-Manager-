@@ -78,12 +78,53 @@
             }
         }
 
+        public static void PhoneBook()
+        {
+            Space();
+            Console.WriteLine("PHONE BOOK");
+            Console.WriteLine("-----------------");
+
+            var phoneBook = new Dictionary<string, string>
+            {
+                { "Maryam", "010167541" },
+                { "Sara",  "010875463" },
+                { "Ahmed",   "010865683" },
+                { "Ali",  "011876456" }
+            };
+
+            phoneBook["Maryam"] = "011435893";
+            phoneBook["Mona"] = "010876543";
+
+            try
+            {
+                phoneBook.Add("Sara", "010876543");
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Sara's number already exists in the phone book.");
+            }
+            bool added = phoneBook.TryAdd("Sara", "010876543");
+            Console.WriteLine($"Trying to add Sara succeeded or not?? {added}");
+
+            if (phoneBook.TryGetValue("Khaled", out string? number))
+                Console.WriteLine($"Khaled: {number}");
+            else
+                Console.WriteLine("Khaled was not found");
+
+            string result = phoneBook.GetValueOrDefault("Khaled", "Not Found");
+            Console.WriteLine($"Khaled: {result}");
+
+            Console.WriteLine($"Keys: {string.Join(", ", phoneBook.Keys)}");
+            Console.WriteLine($"Values: {string.Join(", ", phoneBook.Values)}");
+        }
 
         static void Main(string[] args)
         {
             StudentGradeManager();
 
             Leaderboard();
+
+            PhoneBook();
         }
     }
 }
