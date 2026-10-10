@@ -161,6 +161,38 @@
             Console.WriteLine($"{{1,2}} is subset of A? {small.IsSubsetOf(setA)}");
         }
 
+        public static void PrintQueueSimulator()
+        {
+            Space();
+            Console.WriteLine("PRINT QUEUE SIMULATOR");
+            Console.WriteLine("-----------------");
+            Queue<string> queuePrinter = new();
+            string[] documents =
+            {
+                "Report.pdf", 
+                "Invoice.pdf",
+                "Letter.docx", 
+                "Resume.pdf", 
+                "Photo.jpg"
+            };
+
+            foreach (string document in documents)
+            {
+                queuePrinter.Enqueue(document);
+            }
+
+            Console.WriteLine($"Print queue: {string.Join(", ", queuePrinter)}");
+            Console.WriteLine($"Count: {queuePrinter.Count}");
+
+            while (queuePrinter.Count > 0)
+            {
+                string document = queuePrinter.Dequeue();
+                Console.WriteLine($"Printing: {document}");
+            }
+
+            bool success = queuePrinter.TryDequeue(out string? nextDocument);
+            Console.WriteLine($"Next document to print: {nextDocument}, Success: {success}");
+        }
 
         static void Main(string[] args)
         {
@@ -171,6 +203,8 @@
             PhoneBook();
 
             UniqueEmails();
+
+            PrintQueueSimulator();
         }
     }
 }
